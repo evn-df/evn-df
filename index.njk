@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yerevan Detective Fun</title>
+</head>
+<body class="main-page">
+    {% image 'static/header.jpg', 'Yerevan Detective fun. City quest 2023', 'page-image' %}
+
+
+    <div class="answers">
+        {% for task in tasks %}
+        <div class="answers__card answer-card">
+            <h2 class="answer-card__title">{{ task.title }}</h2>
+            <form class="js-answer-form" data-right-answers="{{ task.hashedAnswers | join(',') }}">
+                <label for="inp-{{ loop.index }}">{{ task.question }}</label>
+                <input class="answer-card__input" id="inp-{{ loop.index }}" />
+                <button type="submit" class="answer-card__check-btn">Проверить</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
