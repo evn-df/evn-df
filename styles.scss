@@ -60,6 +60,11 @@
     border-radius: 0.5em;
     border: none;
     font-size: 1.2em;
+    cursor: pointer;
+
+    &:hover{
+        background: rgb(201, 104, 30);
+    }
   }
 
   &__answer {
