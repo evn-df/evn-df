@@ -27,7 +27,7 @@ const imageShortcode = async (
   return Image.generateHTML(imageMetadata, imageAttributes);
 };
 
-
 module.exports = (eleventyConfig) => {
-    eleventyConfig.addShortcode('image', imageShortcode)
-}
+  eleventyConfig.addShortcode("image", imageShortcode);
+  eleventyConfig.addPassthroughCopy("answers-checker.js");
+};

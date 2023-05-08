@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yerevan Detective Fun</title>
-</head>
-<body class="main-page">
-    {% image 'static/header.jpg', 'Yerevan Detective fun. City quest 2023', 'page-image' %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Yerevan Detective Fun</title>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body class="main-page">
+        {% image 'static/header.jpg', 'Yerevan Detective fun. City quest 2023', 'page-image' %}
 
-
-    <div class="answers">
-        {% for task in tasks %}
-        <div class="answers__card answer-card">
-            <h2 class="answer-card__title">{{ task.title }}</h2>
-            <form class="js-answer-form" data-right-answers="{{ task.hashedAnswers | join(',') }}">
-                <label for="inp-{{ loop.index }}">{{ task.question }}</label>
-                <input class="answer-card__input" id="inp-{{ loop.index }}" />
-                <button type="submit" class="answer-card__check-btn">Проверить</button>
-            </form>
+        <div class="answers">
+            {% for task in tasks.questions %}
+                <form class="answers__card answer-card js-answer-form" data-task-id="{{ task.id }}">
+                    <h2 class="answer-card__title">{{ task.question }}</h2>
+                    <label class="answer-card__label" for="inp-{{ task.id }}">Ответ:</label>
+                    <input name="answer" class="answer-card__input" id="inp-{{ task.id }}" value="ok"/>
+                    <button type="submit" class="answer-card__check-btn">Проверить</button>
+                    <output class='answer-card__answer'>Ответ не проверен</output>
+                </form>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-</body>
+        <script src='/answers-checker.js'></script>
+    </body>
 </html>
