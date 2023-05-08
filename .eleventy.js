@@ -19,7 +19,6 @@ const imageShortcode = async (
   const imageAttributes = {
     alt,
     sizes,
-    loading: "lazy",
     decoding: "async",
     class: className,
   };
