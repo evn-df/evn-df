@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "watch:sass": "npx sass styles.scss:_site/styles.css --watch",
     "build": "npx @11ty/eleventy",
     "start": "npx @11ty/eleventy --serve --incremental"
   },
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-img": "^3.1.0",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "sass": "^1.62.1"
   }
 }
