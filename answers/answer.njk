@@ -1,0 +1,8 @@
+---
+pagination:
+    data: tasks.answers
+    size: 1
+    alias: answer
+permalink: '/answer/{{ answer.taskId }}--{{ answer.answer }}.json'
+---
+{{ answer | dump | safe }}

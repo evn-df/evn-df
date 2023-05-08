@@ -2,39 +2,28 @@ const { webcrypto } = require("node:crypto");
 
 const tasks = [
   {
-    title: 'Test title1',
+    id: "test",
     question: "How are you?",
+    successText: "You're right!",
     answers: ["ok", "bad"],
   },
   {
-    title: 'Test title2',
+    id: "test2",
     question: "How is your mom?",
-    answers: ["ok"],
+    successText: "unbelivable, ha?",
+    answers: ["she's alright"],
   },
 ];
 
-const coder = new TextEncoder();
-
-module.exports = async () =>
-  await Promise.all(
-    tasks.map(async (task) => {
-      let hashedAnswerBuffers = await Promise.all(
-        task.answers.map((answer) =>
-          webcrypto.subtle
-            .digest("SHA-1", coder.encode(answer.toLowerCase()))
-            .then((ab) => new Uint8Array(ab))
-        )
-      );
-
-      const hashedAnswers = hashedAnswerBuffers.map((answerBuffer) =>
-        Array.from(answerBuffer)
-          .map((el) => (el.toString(16)).padStart(2,'0'))
-          .join("")
-      );
-
-      return {
-        ...task,
-        hashedAnswers,
-      };
-    })
-  );
+module.exports = () => {
+  return {
+    questions: tasks,
+    answers: tasks.flatMap((task) =>
+      task.answers.map((answer) => ({
+        taskId: task.id,
+        answer: answer.trim().toLocaleLowerCase(),
+        successText: task.successText,
+      }))
+    ),
+  };
+};
